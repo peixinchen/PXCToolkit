@@ -1,0 +1,2 @@
+LogFormat "%h %l %u %t %T %D \"%r\" %>s %b" common
+LogFormat "%h %a - %u [%t] \"%r\" %s %b %D \"%{Referer}i\" \"%{User-Agent}i\"" eagle_eye
