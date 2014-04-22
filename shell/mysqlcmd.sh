@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 function mysqlcmd()
 {
@@ -20,15 +20,18 @@ function mysqlcmd()
 
     for((i=1;i<=$#;i++))
     do
-        cmdline="$cmdline ${!i}"
+        arg=`sed 's/"/\\\"/g' <<< ${!i}`
+        cmdline="$cmdline $arg"
     done
 
-    eval $cmdline
+    eval "$cmdline"
 }
+
+### 下面这部分放在不同的命令里 ###
 
 export HOST="mysql host"
 export PORT="mysql port"
 export USER="mysql user"
 export PASSWORD="mysql password" # "" if no password
 
-mysqlcmd $*
+mysqlcmd "$@"
